@@ -1,0 +1,14 @@
+<head>
+    <title>Dummy Flask Application Page</title>
+</head>
+
+<body>
+    Input Data: {{ data }}
+    <br>
+    <hr>
+    <br>
+    <form method="POST">
+        {{ form.input_field(placeholder="Provide Some Input") }}
+        {{ form.submit() }}
+    </form>
+</body>
