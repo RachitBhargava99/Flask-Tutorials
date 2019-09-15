@@ -11,7 +11,8 @@ def home():
     form = DummyForm()
     if form.is_submitted():
         input_data = form.input_field.data
-        return render_template('home.html', form=form, data=input_data)
+        length = len(input_data)
+        return render_template('home.html', form=form, data=length)
     else:
         return render_template('home.html', form=form, data='Form Not Submitted')
 
