@@ -3,12 +3,21 @@
 </head>
 
 <body>
-    Input Data: {{ data }}
+    <b>Pokemon Name:</b> {{ poke_name }}
+    <br>
+    <b>Pokemon Rank:</b> {{ poke_rank }}
+    <br>
+    <b>Pokemon Type Number:</b> {{ poke_type }}
     <br>
     <hr>
     <br>
     <form method="POST">
-        {{ form.input_field(placeholder="Provide Some Input") }}
+        {{ form.pokemon_name(placeholder="Pokemon Name") }}
+        <br>
+        {{ form.rank(placeholder="Pokemon Rank") }}
+        <br>
+        {{ form.pokemon_type() }}
+        <br>
         {{ form.submit() }}
     </form>
 </body>
