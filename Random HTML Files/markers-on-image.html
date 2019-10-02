@@ -1,0 +1,58 @@
+<head>
+    <title>Rendering Markers on Image</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.5.1/leaflet.css" />    
+	<script src="http://cdn.leafletjs.com/leaflet/v1.5.1/leaflet.js"></script>
+</head>
+
+<style>
+	#image-map {
+	  width: 600px;
+	  height: 400px;
+	  border: 1px solid #ccc;
+	  margin-bottom: 10px;
+	}
+</style>
+
+<body>
+	<div id="image-map"></div>
+	<button type="button" onclick="getAllMarkers();">Pop Up All Marker Dimensions</button>
+</body>
+
+<script>
+	// create the slippy map
+	var map = L.map('image-map', {
+	  minZoom: 1,
+	  maxZoom: 4,
+	  center: [0, 0],
+	  zoom: 1,
+	  crs: L.CRS.Simple
+	});
+
+	// dimensions and url of the image
+	var w = 2000,
+	    h = 1500,
+	    url = 'https://pixabay.com/static/uploads/photo/2014/07/10/17/18/large-home-389271_960_720.jpg';
+	
+
+	//var marker = L.marker([-100, 100]).addTo(map);
+	var marker1 = L.marker([-100, 100]).addTo(map).bindPopup("Door");
+	var marker2 = L.marker([-100, 150]).addTo(map).bindPopup("Lock");
+	var marker3 = L.marker([-50, 200]).addTo(map).bindPopup("Key");
+	// calculate the edges of the image, in coordinate space
+	var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+	var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+	var bounds = new L.LatLngBounds(southWest, northEast);
+	L.imageOverlay(url, bounds).addTo(map);
+	map.setMaxBounds(bounds);
+
+	function getAllMarkers() {		    
+	    var allMarkersObjArray = [];//new Array();
+		  allMarkersObjArray.push(marker1._latlng);
+	    allMarkersObjArray.push(marker2._latlng);
+	    allMarkersObjArray.push(marker3._latlng);		
+	    alert(JSON.stringify(allMarkersObjArray));
+	    console.log(JSON.stringify(allMarkersObjArray));    
+	}
+</script>
+
+
